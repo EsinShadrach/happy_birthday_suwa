@@ -9,10 +9,7 @@ void main() {
   runApp(const MainApp());
 }
 
-var birthdayData = (
-  name: "Adeswua",
-  age: 21,
-);
+var birthdayData = (name: "Adeswua", age: 21);
 
 class MainApp extends StatelessWidget {
   const MainApp({super.key});
@@ -169,13 +166,8 @@ class _CupCakeGlazeBtnState extends State<CupCakeGlazeBtn>
       end: 0.9,
     ).animate(_textAnimationController);
 
-    _animation = Tween<double>(
-      begin: 1,
-      end: 0.9,
-    ).animate(_controller);
-    _textAnimationController.repeat(
-      reverse: true,
-    );
+    _animation = Tween<double>(begin: 1, end: 0.9).animate(_controller);
+    _textAnimationController.repeat(reverse: true);
 
     super.initState();
   }
@@ -194,7 +186,7 @@ class _CupCakeGlazeBtnState extends State<CupCakeGlazeBtn>
                 WidgetSpan(
                   alignment: PlaceholderAlignment.middle,
                   child: Icon(Icons.arrow_downward_rounded),
-                )
+                ),
               ],
             ),
           ),
@@ -235,18 +227,23 @@ class _CupCakeGlazeBtnState extends State<CupCakeGlazeBtn>
                     Navigator.of(context).push(
                       PageRouteBuilder(
                         pageBuilder: (_, __, ___) => const DetailsScreen(),
-                        transitionsBuilder:
-                            (context, animation, secondaryAnimation, child) {
+                        transitionsBuilder: (
+                          context,
+                          animation,
+                          secondaryAnimation,
+                          child,
+                        ) {
                           Offset begin = const Offset(0.0, 1.0);
                           Offset end = Offset.zero;
 
-                          Animatable<Offset> tween =
-                              Tween<Offset>(begin: begin, end: end).chain(
-                            CurveTween(curve: Curves.easeInOut),
-                          );
+                          Animatable<Offset> tween = Tween<Offset>(
+                            begin: begin,
+                            end: end,
+                          ).chain(CurveTween(curve: Curves.easeInOut));
 
-                          Animation<Offset> pageAnimation =
-                              animation.drive(tween);
+                          Animation<Offset> pageAnimation = animation.drive(
+                            tween,
+                          );
 
                           return SlideTransition(
                             position: pageAnimation,
